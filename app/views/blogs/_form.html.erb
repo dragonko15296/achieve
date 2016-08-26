@@ -10,7 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <%= f.label :"投稿者:  " %>
+  <%= @blog.user.name %>
+  <%= f.label :"ＩＤ: " %>
+  <%= @blog.user_id %>
+  
+  <br>
   <%= f.label :タイトル %>
   <%= f.text_field :title, class: "form-control" %>
   <br>
