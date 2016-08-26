@@ -12,7 +12,9 @@
   <% end %>
   
   <%= f.label :"投稿者:  " %>
-  <%= @blog.user.name %>
+  <% unless @blog.id == nil %>
+    <%= @blog.user.name %>
+  <% end %>
   <%= f.label :"ＩＤ: " %>
   <%= @blog.user_id %>
   
