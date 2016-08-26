@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :blogs, except: [:show] do
     collection do
       post:confirm
