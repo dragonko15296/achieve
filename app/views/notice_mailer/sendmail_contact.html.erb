@@ -1,5 +1,8 @@
-<h1>NoticeMailer#sendmail_contact</h1>
+<h1>Achieveへのお問い合わせが完了しました！</h1>
+
+<h4>title: <%= @contact.title %></h4>
+<p>content: <%= @contact.content %></p>
 
 <p>
-  <%= @greeting %>, find me in app/views/notice_mailer/sendmail_contact.html.erb
+  <%= link_to '他のお問い合わせはこちら', new_contact_path(@blog) %>
 </p>
