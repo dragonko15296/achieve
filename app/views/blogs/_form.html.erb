@@ -11,12 +11,12 @@
     </div>
   <% end %>
   
-  <%= f.label :"投稿者:  " %>
   <% unless @blog.id == nil %>
+    <%= f.label :"投稿者:  " %>
     <%= @blog.user.name %>
+    <%= f.label :"ＩＤ: " %>
+    <%= @blog.user_id %>
   <% end %>
-  <%= f.label :"ＩＤ: " %>
-  <%= @blog.user_id %>
   
   <br>
   <%= f.label :タイトル %>
