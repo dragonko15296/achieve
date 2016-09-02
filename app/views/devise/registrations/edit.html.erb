@@ -3,7 +3,7 @@
     <h2>登録情報を変更</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
+      <%= f.error_messages! %>
 
       <div class="field">
         <%= f.email_field :email, autofocus: true,class: "form-control", placeholder: "メールアドレス" %>
@@ -13,26 +13,40 @@
         <%= f.text_field :name, class: "form-control", placeholder: "名前" %>
       </div>
   
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-  
-      <div class="field">
-        <%= f.password_field :current_password, autocomplete: "off",class: "form-control", placeholder: "現在のパスワード" %>
-      </div>
-
-      <br>
-      <br>
-
-      <div class="field">
-        <%= f.password_field :password, autocomplete: "off",class: "form-control", placeholder: "新しいパスワード" %>
-        <% if @minimum_password_length %>
+      <% if @user.provider.blank? %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
-      </div>
+  
+        <div class="field">
+          <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "off",class: "form-control", placeholder: "現在のパスワード" %>
+        </div>
+      
+        <div class="field">
+          <div class= "profile_photo">
+            <%= profile_img(@user) if profile_img(@user) %>
+          </div>
+          <div class= "file_choose">
+            <%= f.file_field :avatar,class:"file_choose" %>
+            <%= f.hidden_field :avatar_cache,class:"file_choose" %>
+          </div>
+        </div>
 
-      <div class="field">
-        <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control", placeholder: "確認" %>
-      </div>
+        <br>
+        <br>
+
+        <div class="field">
+          <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "off",class: "form-control", placeholder: "新しいパスワード" %>
+          <% if @minimum_password_length %>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control", placeholder: "確認" %>
+        </div>
+      <% end %>
 
       <br>
 

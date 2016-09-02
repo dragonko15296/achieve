@@ -11,6 +11,14 @@
       <div class= "writer_data">
         <p>投稿者: <%= blog.user.name %> (ID: <%= blog.user_id %>)</p>
       </div>
+  
+      <% @users.each do |user| %>
+        <div class="user_profile_icon">
+          <%= profile_img(user) if profile_img(user) %>
+        </div>
+      <% end %>
+  
+
       <%= link_to "編集", edit_blog_path(blog.id), class: "btn btn-default btn-sm btn-success" %>
       <%= link_to "削除", blog_path(blog.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-default btn-sm btn btn-danger" %>
     </div>

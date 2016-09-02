@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   
   def index
     @blogs = Blog.all
-    raise
+    @users = User.all
   end
   def new
     if params[:back]
@@ -37,6 +37,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blogs_params)
     render :new if @blog.invalid?
   end
+
   private
     def blogs_params
       params.require(:blog).permit(:title,:content)
